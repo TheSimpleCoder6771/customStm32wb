@@ -1,2 +1,5 @@
 # customStm32wb
 Repo for stm32wb55
+
+STMCUBEIDE Version : 1.16.1
+STMCUBEMX  Version : 6.13.0
