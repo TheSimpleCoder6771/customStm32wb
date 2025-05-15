@@ -959,7 +959,7 @@ __STATIC_INLINE uint32_t LL_FLASH_GetLatency(void)
   * @brief  The application entry point.
   * @retval int
   */
-int main(void)
+int main( void )
 {
  80006ac:	b580      	push	{r7, lr}
  80006ae:	af00      	add	r7, sp, #0
@@ -968,12 +968,12 @@ int main(void)
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
 
   /* System interrupt init*/
-  NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_4);
+  NVIC_SetPriorityGrouping( NVIC_PRIORITYGROUP_4 );
  80006b0:	2003      	movs	r0, #3
  80006b2:	f7ff fdef 	bl	8000294 <__NVIC_SetPriorityGrouping>
 
   /* SysTick_IRQn interrupt configuration */
-  NVIC_SetPriority(SysTick_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),15, 0));
+  NVIC_SetPriority( SysTick_IRQn, NVIC_EncodePriority( NVIC_GetPriorityGrouping(), 15, 0 ) );
  80006b6:	f7ff fe11 	bl	80002dc <__NVIC_GetPriorityGrouping>
  80006ba:	4603      	mov	r3, r0
  80006bc:	2200      	movs	r2, #0
@@ -1009,7 +1009,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
+  while ( 1 )
  80006e2:	bf00      	nop
  80006e4:	e7fd      	b.n	80006e2 <main+0x36>
 	...
@@ -1019,14 +1019,14 @@ int main(void)
   * @brief System Clock Configuration
   * @retval None
   */
-void SystemClock_Config(void)
+void SystemClock_Config( void )
 {
  80006e8:	b580      	push	{r7, lr}
  80006ea:	af00      	add	r7, sp, #0
-  LL_FLASH_SetLatency(LL_FLASH_LATENCY_3);
+  LL_FLASH_SetLatency( LL_FLASH_LATENCY_3 );
  80006ec:	2003      	movs	r0, #3
  80006ee:	f7ff ffbb 	bl	8000668 <LL_FLASH_SetLatency>
-  while(LL_FLASH_GetLatency() != LL_FLASH_LATENCY_3)
+  while ( LL_FLASH_GetLatency() != LL_FLASH_LATENCY_3 )
  80006f2:	bf00      	nop
  80006f4:	f7ff ffcc 	bl	8000690 <LL_FLASH_GetLatency>
  80006f8:	4603      	mov	r3, r0
@@ -1038,7 +1038,7 @@ void SystemClock_Config(void)
   /* HSE configuration and activation */
   LL_RCC_HSE_Enable();
  80006fe:	f7ff fe58 	bl	80003b2 <LL_RCC_HSE_Enable>
-  while(LL_RCC_HSE_IsReady() != 1)
+  while ( LL_RCC_HSE_IsReady() != 1 )
  8000702:	bf00      	nop
  8000704:	f7ff fe64 	bl	80003d0 <LL_RCC_HSE_IsReady>
  8000708:	4603      	mov	r3, r0
@@ -1050,7 +1050,7 @@ void SystemClock_Config(void)
   /* HSI configuration and activation */
   LL_RCC_HSI_Enable();
  800070e:	f7ff fe71 	bl	80003f4 <LL_RCC_HSI_Enable>
-  while(LL_RCC_HSI_IsReady() != 1)
+  while ( LL_RCC_HSI_IsReady() != 1 )
  8000712:	bf00      	nop
  8000714:	f7ff fe7d 	bl	8000412 <LL_RCC_HSI_IsReady>
  8000718:	4603      	mov	r3, r0
@@ -1060,7 +1060,7 @@ void SystemClock_Config(void)
   }
 
   /* Main PLL configuration and activation */
-  LL_RCC_PLL_ConfigDomain_SYS(LL_RCC_PLLSOURCE_HSE, LL_RCC_PLLM_DIV_2, 8, LL_RCC_PLLR_DIV_2);
+  LL_RCC_PLL_ConfigDomain_SYS( LL_RCC_PLLSOURCE_HSE, LL_RCC_PLLM_DIV_2, 8, LL_RCC_PLLR_DIV_2 );
  800071e:	f04f 5300 	mov.w	r3, #536870912	@ 0x20000000
  8000722:	2208      	movs	r2, #8
  8000724:	2110      	movs	r1, #16
@@ -1070,7 +1070,7 @@ void SystemClock_Config(void)
  800072c:	f7ff ff4a 	bl	80005c4 <LL_RCC_PLL_Enable>
   LL_RCC_PLL_EnableDomain_SYS();
  8000730:	f7ff ff8a 	bl	8000648 <LL_RCC_PLL_EnableDomain_SYS>
-  while(LL_RCC_PLL_IsReady() != 1)
+  while ( LL_RCC_PLL_IsReady() != 1 )
  8000734:	bf00      	nop
  8000736:	f7ff ff54 	bl	80005e2 <LL_RCC_PLL_IsReady>
  800073a:	4603      	mov	r3, r0
@@ -1081,19 +1081,19 @@ void SystemClock_Config(void)
 
   /* Sysclk activation on the main PLL */
   /* Set CPU1 prescaler*/
-  LL_RCC_SetAHBPrescaler(LL_RCC_SYSCLK_DIV_1);
+  LL_RCC_SetAHBPrescaler( LL_RCC_SYSCLK_DIV_1 );
  8000740:	2000      	movs	r0, #0
  8000742:	f7ff feae 	bl	80004a2 <LL_RCC_SetAHBPrescaler>
 
   /* Set CPU2 prescaler*/
-  LL_C2_RCC_SetAHBPrescaler(LL_RCC_SYSCLK_DIV_2);
+  LL_C2_RCC_SetAHBPrescaler( LL_RCC_SYSCLK_DIV_2 );
  8000746:	2080      	movs	r0, #128	@ 0x80
  8000748:	f7ff febf 	bl	80004ca <LL_C2_RCC_SetAHBPrescaler>
 
-  LL_RCC_SetSysClkSource(LL_RCC_SYS_CLKSOURCE_PLL);
+  LL_RCC_SetSysClkSource( LL_RCC_SYS_CLKSOURCE_PLL );
  800074c:	2003      	movs	r0, #3
  800074e:	f7ff fe72 	bl	8000436 <LL_RCC_SetSysClkSource>
-  while(LL_RCC_GetSysClkSource() != LL_RCC_SYS_CLKSOURCE_STATUS_PLL)
+  while ( LL_RCC_GetSysClkSource() != LL_RCC_SYS_CLKSOURCE_STATUS_PLL )
  8000752:	bf00      	nop
  8000754:	f7ff fe83 	bl	800045e <LL_RCC_GetSysClkSource>
  8000758:	4603      	mov	r3, r0
@@ -1103,26 +1103,26 @@ void SystemClock_Config(void)
   }
 
   /* Set AHB SHARED prescaler*/
-  LL_RCC_SetAHB4Prescaler(LL_RCC_SYSCLK_DIV_1);
+  LL_RCC_SetAHB4Prescaler( LL_RCC_SYSCLK_DIV_1 );
  800075e:	2000      	movs	r0, #0
  8000760:	f7ff fec9 	bl	80004f6 <LL_RCC_SetAHB4Prescaler>
 
   /* Set APB1 prescaler*/
-  LL_RCC_SetAPB1Prescaler(LL_RCC_APB1_DIV_1);
+  LL_RCC_SetAPB1Prescaler( LL_RCC_APB1_DIV_1 );
  8000764:	2000      	movs	r0, #0
  8000766:	f7ff fedd 	bl	8000524 <LL_RCC_SetAPB1Prescaler>
 
   /* Set APB2 prescaler*/
-  LL_RCC_SetAPB2Prescaler(LL_RCC_APB2_DIV_1);
+  LL_RCC_SetAPB2Prescaler( LL_RCC_APB2_DIV_1 );
  800076a:	2000      	movs	r0, #0
  800076c:	f7ff feee 	bl	800054c <LL_RCC_SetAPB2Prescaler>
 
-  LL_Init1msTick(64000000);
+  LL_Init1msTick( 64000000 );
  8000770:	4803      	ldr	r0, [pc, #12]	@ (8000780 <SystemClock_Config+0x98>)
  8000772:	f001 f90f 	bl	8001994 <LL_Init1msTick>
 
   /* Update CMSIS variable (which can be updated also through SystemCoreClockUpdate function) */
-  LL_SetSystemCoreClock(64000000);
+  LL_SetSystemCoreClock( 64000000 );
  8000776:	4802      	ldr	r0, [pc, #8]	@ (8000780 <SystemClock_Config+0x98>)
  8000778:	f001 f91a 	bl	80019b0 <LL_SetSystemCoreClock>
 }
@@ -1135,17 +1135,17 @@ void SystemClock_Config(void)
   * @brief Peripherals Common Clock Configuration
   * @retval None
   */
-void PeriphCommonClock_Config(void)
+void PeriphCommonClock_Config( void )
 {
  8000784:	b580      	push	{r7, lr}
  8000786:	af00      	add	r7, sp, #0
-  LL_RCC_SetSMPSClockSource(LL_RCC_SMPS_CLKSOURCE_HSI);
+  LL_RCC_SetSMPSClockSource( LL_RCC_SMPS_CLKSOURCE_HSI );
  8000788:	2000      	movs	r0, #0
  800078a:	f7ff fef3 	bl	8000574 <LL_RCC_SetSMPSClockSource>
-  LL_RCC_SetSMPSPrescaler(LL_RCC_SMPS_DIV_1);
+  LL_RCC_SetSMPSPrescaler( LL_RCC_SMPS_DIV_1 );
  800078e:	2010      	movs	r0, #16
  8000790:	f7ff ff04 	bl	800059c <LL_RCC_SetSMPSPrescaler>
-  LL_RCC_SetRFWKPClockSource(LL_RCC_RFWKP_CLKSOURCE_NONE);
+  LL_RCC_SetRFWKPClockSource( LL_RCC_RFWKP_CLKSOURCE_NONE );
  8000794:	2000      	movs	r0, #0
  8000796:	f7ff fe6e 	bl	8000476 <LL_RCC_SetRFWKPClockSource>
   /* USER CODE BEGIN Smps */
@@ -1160,7 +1160,7 @@ void PeriphCommonClock_Config(void)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(uint8_t *file, uint32_t line)
+void assert_failed( uint8_t * file, uint32_t line )
 {
  800079e:	b480      	push	{r7}
  80007a0:	b083      	sub	sp, #12
@@ -1170,7 +1170,7 @@ void assert_failed(uint8_t *file, uint32_t line)
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-  /* USER CODE END 6 */
+     /* USER CODE END 6 */
 }
  80007a8:	bf00      	nop
  80007aa:	370c      	adds	r7, #12
