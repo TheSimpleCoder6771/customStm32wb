@@ -15,7 +15,7 @@
             "compilerPath": "",
             "cppStandard": "c++17",
             "cStandard": "c99",
-            "intelliSenseMode": "windows-gcc-arm"
+            "intelliSenseMode": "gcc-arm"
         }
     ],
     "version": 4
